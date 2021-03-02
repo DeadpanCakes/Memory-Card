@@ -7,19 +7,20 @@ function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
+  const initScore = async() => setScore(0);
   const increaseScore = () => setScore(score + 1);
-  const initScore = () => setScore(0);
-  const increaseHighScore = () => {
+
+  useEffect(() => {
     if (score > highScore) {
-      setHighScore(score);
+      setHighScore(score)
     }
-  };
+  }, [score,highScore])
 
   return (
     <div className="App">
       <Header />
-      <GameBoard />
-      <Footer currentScore="0" bestScore="13" />
+      <GameBoard increaseScore={increaseScore} initScore={initScore}/>
+      <Footer currentScore={score} bestScore={highScore} />
     </div>
   );
 }
