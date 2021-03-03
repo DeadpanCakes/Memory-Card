@@ -1,6 +1,9 @@
 const cardObjFactory = (key, name, imgSrc) => {
-  let isTapped = false;
-  const toggleTapped = () => (isTapped = !isTapped);
+  let tapped = false;
+  const toggleTapped = () => {
+    tapped = !tapped
+    console.log('toggle reached:', tapped)
+  };
 
   return {
     key,
@@ -8,8 +11,9 @@ const cardObjFactory = (key, name, imgSrc) => {
     imgSrc,
     toggleTapped,
     get isTapped() {
-        return isTapped
+        return tapped
     }
   };
 };
 
+export default cardObjFactory
