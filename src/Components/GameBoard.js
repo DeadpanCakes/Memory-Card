@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
+import EnemySide from "./EnemySide";
+import PCSide from "./PCSide";
 
 const GameBoard = (props) => {
   const { deck, toggleCardTap } = props;
@@ -10,7 +12,7 @@ const GameBoard = (props) => {
       return hand;
     } else if (hand.length === 4 && hand.every((card) => card.isTapped)) {
       //If deck only needs one more card, and every card is tapped, add one untapped card
-      const updatedDeck = deck.filter((card) => !card.isTapped)
+      const updatedDeck = deck.filter((card) => !card.isTapped);
       const pulledCard =
         updatedDeck[Math.floor(Math.random() * updatedDeck.length)];
       return drawHand(hand.concat(pulledCard));
@@ -29,8 +31,8 @@ const GameBoard = (props) => {
   const drawNewHand = () => setHand(drawHand([]));
 
   useEffect(() => {
-    if(deck.every(card => card.isTapped)) {
-      props.initDeck()
+    if (deck.every((card) => card.isTapped)) {
+      props.initDeck();
     }
     drawNewHand();
   }, [props.turn]);
@@ -39,17 +41,23 @@ const GameBoard = (props) => {
     <button onClick={props.startGame}>Start Game</button>
   ) : (
     <div id="gameBoard">
-      {hand.map((card) => (
-        <Card
-          key={card.key}
-          card={card}
-          endTurn={props.endTurn}
-          isTapped={card.isTapped}
-          toggleTap={() => toggleCardTap(card.key)}
-          endGame={props.endGame}
-          incrementTurn={props.incrementTurn}
-        />
-      ))}
+      <div id="hand">
+        {hand.map((card) => (
+          <Card
+            key={card.key}
+            card={card}
+            endTurn={props.endTurn}
+            isTapped={card.isTapped}
+            toggleTap={() => toggleCardTap(card.key)}
+            endGame={props.endGame}
+            incrementTurn={props.incrementTurn}
+          />
+        ))}
+      </div>
+      <div id='field'>
+        <PCSide />
+        <EnemySide />
+      </div>
     </div>
   );
 };

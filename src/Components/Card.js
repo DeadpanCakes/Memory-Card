@@ -12,14 +12,13 @@ const Card = (props) => {
   };
 
   return (
-    <div>
       <img
+        class='card'
         onClick={handleClick}
         key={key}
         alt={`A ${name} card from Slay the Spire`}
         src={imgSrc}
       ></img>
-    </div>
   );
 };
 
