@@ -16,6 +16,7 @@ const GameBoard = (props) => {
   };
 
   const drawHand = (hand) => {
+    //Recursive Fn that repeatedly adds new cards to hand until it reaches appropriate size
     if (hand.length === 3) {
       return hand;
     } else {
