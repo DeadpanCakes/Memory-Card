@@ -100,10 +100,7 @@ header {
 	flex-grow: 1;
 	display: flex;
 	align-items: center;
-}
-
-#pcSide {
-	margin-right: auto;
+	justify-content: space-around;
 }
 
 footer {

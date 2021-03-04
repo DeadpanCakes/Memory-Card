@@ -1,7 +1,9 @@
+import ironclad from '../img/Ironclad.png';
+
 const PCSide = (props) => {
     return (
         <div id='pcSide'>
-            <img alt='The Ironclad From Slay The Spire'></img>
+            <img src={ironclad} alt='The Ironclad From Slay The Spire'></img>
         </div>
     )
 }
