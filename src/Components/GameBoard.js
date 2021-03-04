@@ -30,15 +30,17 @@ const GameBoard = (props) => {
   };
 
   const startingHand = drawHand([]);
-  const [hand, setHand] = useState(startingHand)
-  const drawNewHand = () => setHand(drawHand([]))
+  const [hand, setHand] = useState(startingHand);
+  const drawNewHand = () => setHand(drawHand([]));
 
   useEffect(() => {
-    console.log(deckState)
-    drawNewHand()
-  }, [props.turn])
+    console.log(deckState);
+    drawNewHand();
+  }, [props.turn]);
 
-  return (
+  return props.isGameOver ? (
+    <button onClick={props.startGame}>Start Game</button>
+  ) : (
     <div id="gameBoard">
       {hand.map((card) => (
         <Card

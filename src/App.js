@@ -15,8 +15,13 @@ function App() {
     setGameOver(true);
     initScore();
   }
-  const startGame = () => setGameOver(false);
   const incrementTurn = () => setTurn(turn+1)
+  const initTurn = () => setTurn(1)
+  const startGame = () => {
+    setGameOver(false)
+    initTurn()
+    initScore()
+  }
 
   useEffect(() => {
     if (score > highScore) {
@@ -34,6 +39,7 @@ function App() {
         startGame={startGame}
         turn={turn}
         incrementTurn={incrementTurn}
+        isGameOver={isGameOver}
       />
       <Footer currentScore={score} bestScore={highScore} isGameOver={isGameOver} />
     </div>
