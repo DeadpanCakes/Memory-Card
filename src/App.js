@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header  turn={turn}/>
       <GameBoard
         increaseScore={increaseScore}
         initScore={initScore}
@@ -35,7 +35,7 @@ function App() {
         turn={turn}
         incrementTurn={incrementTurn}
       />
-      <Footer turn={turn} currentScore={score} bestScore={highScore} isGameOver={isGameOver} />
+      <Footer currentScore={score} bestScore={highScore} isGameOver={isGameOver} />
     </div>
   );
 }
