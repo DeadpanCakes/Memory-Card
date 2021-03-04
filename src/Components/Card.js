@@ -8,8 +8,7 @@ const Card = (props) => {
     if (card.isTapped) {
       props.endGame();
     } else {
-      props.increaseScore();
-      props.incrementTurn();
+      props.endTurn();
       card.toggleTapped();
     }
   };
@@ -22,8 +21,6 @@ const Card = (props) => {
         alt={`A ${name} card from Slay the Spire`}
         scr={imgSrc}
       ></img>
-      <p>Obj.isTapped: {card.isTapped.toString()}</p>
-      <p>state.isTapped: {card.isTapped.toString()}</p>
       <button onClick={card.toggleTapped}>Toggle</button>
       <button onClick={() => console.log(card.isTapped)}>Check</button>
     </div>

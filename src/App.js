@@ -46,6 +46,14 @@ function App() {
     setGameOver(false);
   };
 
+  const endTurn = () => {
+    if (deckState.every(card => card.isTapped)) {
+      initDeck()
+    }
+    increaseScore();
+    incrementTurn();
+  }
+
   useEffect(() => {
     if (score > highScore) {
       setHighScore(score);
@@ -58,12 +66,12 @@ function App() {
       <GameBoard
         deck={deck}
         toggleCardTap={toggleCardTap}
-        increaseScore={increaseScore}
+        endTurn={endTurn}
         initScore={initScore}
         endGame={endGame}
         startGame={startGame}
         turn={turn}
-        incrementTurn={incrementTurn}
+        initDeck={initDeck}
         isGameOver={isGameOver}
       />
       <Footer
