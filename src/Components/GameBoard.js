@@ -3,24 +3,14 @@ import Card from "./Card";
 import deck from "../deck";
 
 const GameBoard = (props) => {
-  const [deckState, setDeckState] = useState(deck);
-
-  const toggleCardTap = (targetKey) => {
-    setDeckState(
-      deckState.map((card) => {
-        return card.key === targetKey
-          ? { ...card, isTapped: !card.isTapped }
-          : card;
-      })
-    );
-  };
+  const {deck, toggleCardTap} = props;
 
   const drawHand = (hand) => {
     //Recursive Fn that repeatedly adds new cards to hand until it reaches appropriate size
     if (hand.length === 3) {
       return hand;
     } else {
-      const updatedDeck = deckState.filter((card) => {
+      const updatedDeck = deck.filter((card) => {
         return !hand.includes(card);
       });
       const pulledCard =
@@ -34,7 +24,6 @@ const GameBoard = (props) => {
   const drawNewHand = () => setHand(drawHand([]));
 
   useEffect(() => {
-    console.log(deckState);
     drawNewHand();
   }, [props.turn]);
 
@@ -55,7 +44,7 @@ const GameBoard = (props) => {
       ))}
       <button onClick={props.increaseScore}>Score +</button>
       <button onClick={props.initScore}>Reset Score</button>
-      <button onClick={() => console.log(deckState)}>Check State</button>
+      <button onClick={() => console.log(deck)}>Check State</button>
     </div>
   );
 };
