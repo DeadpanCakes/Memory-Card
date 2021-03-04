@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 const Card = (props) => {
   const { key, name, imgSrc } = props.card;
   const { card } = props;
@@ -19,7 +17,7 @@ const Card = (props) => {
         onClick={handleClick}
         key={key}
         alt={`A ${name} card from Slay the Spire`}
-        scr={imgSrc}
+        src={imgSrc}
       ></img>
     </div>
   );

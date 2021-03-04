@@ -6,9 +6,9 @@ const GameBoard = (props) => {
 
   const drawHand = (hand) => {
     //Recursive Fn that repeatedly adds new cards to hand until it reaches appropriate size
-    if (hand.length === 8) {
+    if (hand.length === 5) {
       return hand;
-    } else if (hand.length === 7 && hand.every((card) => card.isTapped)) {
+    } else if (hand.length === 4 && hand.every((card) => card.isTapped)) {
       //If deck only needs one more card, and every card is tapped, add one untapped card
       const updatedDeck = deck.filter((card) => !card.isTapped)
       const pulledCard =
