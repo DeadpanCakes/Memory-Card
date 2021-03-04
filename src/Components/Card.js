@@ -9,6 +9,7 @@ const Card = (props) => {
       props.endGame();
     } else {
       props.increaseScore();
+      props.incrementTurn();
       card.toggleTapped();
     }
   };

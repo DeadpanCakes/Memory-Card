@@ -7,6 +7,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
+  const [turn, setTurn] = useState(1);
 
   const initScore = async () => setScore(0);
   const increaseScore = () => setScore(score + 1);
@@ -15,6 +16,7 @@ function App() {
     initScore();
   }
   const startGame = () => setGameOver(false);
+  const incrementTurn = () => setTurn(turn+1)
 
   useEffect(() => {
     if (score > highScore) {
@@ -30,8 +32,10 @@ function App() {
         initScore={initScore}
         endGame={endGame}
         startGame={startGame}
+        turn={turn}
+        incrementTurn={incrementTurn}
       />
-      <Footer currentScore={score} bestScore={highScore} isGameOver={isGameOver} />
+      <Footer turn={turn} currentScore={score} bestScore={highScore} isGameOver={isGameOver} />
     </div>
   );
 }
