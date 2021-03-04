@@ -21,8 +21,6 @@ const Card = (props) => {
         alt={`A ${name} card from Slay the Spire`}
         scr={imgSrc}
       ></img>
-      <button onClick={card.toggleTapped}>Toggle</button>
-      <button onClick={() => console.log(card.isTapped)}>Check</button>
     </div>
   );
 };

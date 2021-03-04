@@ -67,7 +67,6 @@ function App() {
         deck={deck}
         toggleCardTap={toggleCardTap}
         endTurn={endTurn}
-        initScore={initScore}
         endGame={endGame}
         startGame={startGame}
         turn={turn}
