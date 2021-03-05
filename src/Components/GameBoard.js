@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import EnemySide from "./EnemySide";
 import PCSide from "./PCSide";
+import background from "../img/stsBackground.jpg";
 
 const GameBoard = (props) => {
   const { deck, toggleCardTap } = props;
@@ -37,24 +38,26 @@ const GameBoard = (props) => {
     drawNewHand();
   }, [props.turn]);
 
-  return props.isGameOver ? (
-    <button onClick={props.startGame}>Start Game</button>
-  ) : (
-    <div id="gameBoard">
-      <div id="hand">
-        {hand.map((card) => (
-          <Card
-            key={card.key}
-            card={card}
-            endTurn={props.endTurn}
-            isTapped={card.isTapped}
-            toggleTap={() => toggleCardTap(card.key)}
-            endGame={props.endGame}
-            incrementTurn={props.incrementTurn}
-          />
-        ))}
-      </div>
-      <div id='field'>
+  return (
+    <div id="gameBoard" style={{ backgroundImage: `url(${background})` }}>
+      {props.isGameOver ? (
+        <button onClick={props.startGame}>Start Game</button>
+      ) : (
+        <div id="hand">
+          {hand.map((card) => (
+            <Card
+              key={card.key}
+              card={card}
+              endTurn={props.endTurn}
+              isTapped={card.isTapped}
+              toggleTap={() => toggleCardTap(card.key)}
+              endGame={props.endGame}
+              incrementTurn={props.incrementTurn}
+            />
+          ))}
+        </div>
+      )}
+      <div id="field">
         <PCSide />
         <EnemySide />
       </div>
