@@ -43,23 +43,23 @@ const GameBoard = (props) => {
       {props.isGameOver ? (
         <button onClick={props.startGame}>Start Game</button>
       ) : (
-        <div id="hand">
-          {hand.map((card) => (
-            <Card
-              key={card.key}
-              card={card}
-              endTurn={props.endTurn}
-              isTapped={card.isTapped}
-              toggleTap={() => toggleCardTap(card.key)}
-              endGame={props.endGame}
-              incrementTurn={props.incrementTurn}
-            />
-          ))}
+        <div id="field">
+          <PCSide />
+          <EnemySide />
         </div>
       )}
-      <div id="field">
-        <PCSide />
-        <EnemySide />
+      <div id="hand">
+        {hand.map((card) => (
+          <Card
+            key={card.key}
+            card={card}
+            endTurn={props.endTurn}
+            isTapped={card.isTapped}
+            toggleTap={() => toggleCardTap(card.key)}
+            endGame={props.endGame}
+            incrementTurn={props.incrementTurn}
+          />
+        ))}
       </div>
     </div>
   );
