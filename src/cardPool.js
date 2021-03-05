@@ -25,7 +25,7 @@ import cloakAndDaggerImg from "./img/CloakAndDagger.png";
 import coolheadedImg from "./img/Coolheaded.png";
 import consecrateImg from "./img/Consecrate.png";
 
-const deck = [
+const cardPool = [
   cardObjFactory(0, "Bash", bashImg),
   cardObjFactory(1, "Neutralize", neutralizeImg),
   cardObjFactory(2, "Zap", zapImg),
@@ -53,4 +53,4 @@ const deck = [
   cardObjFactory(24, "Consecrate", consecrateImg),
 ];
 
-export default deck;
+export default cardPool;
