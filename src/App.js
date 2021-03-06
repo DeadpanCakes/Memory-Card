@@ -6,7 +6,6 @@ import cardPool from "./cardPool";
 import emitter from './emitter';
 
 function App() {
-  console.log(emitter)
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
@@ -74,6 +73,9 @@ function App() {
         turn={turn}
         initDeck={initDeck}
         isGameOver={isGameOver}
+        lvl={lvl}
+        initLvl={initLvl}
+        lvlUp={lvlUp}
       />
       <Footer
         currentScore={score}
