@@ -1,7 +1,7 @@
 import eventEmitter from 'eventemitter3';
 
-const emitter = (() => {
+const gameLogic = (() => {
     return new eventEmitter()
 })();
 
-export default emitter;
+export default gameLogic;

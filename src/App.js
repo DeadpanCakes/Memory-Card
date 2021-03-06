@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import GameBoard from "./Components/GameBoard";
 import cardPool from "./cardPool";
-import emitter from './emitter';
+import gameLogic from "./gameLogic";
 
 function App() {
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
+  const [prevBest, setPrevBest] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
   const [turn, setTurn] = useState(1);
   const [cardPoolState, setCardPoolState] = useState(cardPool);
@@ -34,32 +34,55 @@ function App() {
     );
   };
 
-  const initScore = async () => setScore(0);
-  const increaseScore = () => setScore(score+lvl)
-  const endGame = () => setGameOver(true);
+  const initScore = () => setScore(0);
+  const increaseScore = () => setScore(score + lvl);
+  const endGame = () => gameLogic.emit('gameEnded');
 
-  const checkForHighScore = () => score>=highScore? setHighScore(score): null
+  const checkForHighScore = () =>{
+    if (score > prevBest) {
+      setPrevBest(score)
+      console.log(prevBest)
+    }
+  }
 
   const incrementTurn = () => setTurn(turn + 1);
   const initTurn = () => setTurn(1);
-  const startGame = () => {
-    initTurn();
-    initScore();
-    initDeck();
-    setGameOver(false);
-  };
+  const startGame = () => gameLogic.emit("gameStarted");
 
   const endTurn = () => {
-    if (cardPoolState.every(card => card.isTapped)) {
-      initDeck()
+    if (cardPoolState.every((card) => card.isTapped)) {
+      initDeck();
     }
-    increaseScore();
+    earnPoints();
     incrementTurn();
-  }
-  
-  const initLvl = () => setLvl(1)
-  const lvlUp = () => setLvl(lvl+1)
+  };
 
+  const initLvl = () => setLvl(1);
+  const lvlUp = () => setLvl(lvl + 1);
+
+  useEffect(() => {
+    gameLogic.on("gameStarted", () => {
+      initTurn();
+      initScore();
+      initDeck();
+      setGameOver(false);
+    });
+
+    gameLogic.on("lvlUp", () => {
+      setLvl(lvl + 1);
+    });
+
+    gameLogic.on("pointsEarned", () => {
+      increaseScore();
+    });
+
+    gameLogic.on('gameEnded', () => {
+      setGameOver(true);
+      checkForHighScore();
+    })
+  });
+
+  const earnPoints = () => gameLogic.emit("pointsEarned");
 
   return (
     <div className="App">
@@ -74,14 +97,15 @@ function App() {
         initDeck={initDeck}
         isGameOver={isGameOver}
         lvl={lvl}
-        initLvl={initLvl}
         lvlUp={lvlUp}
       />
       <Footer
         currentScore={score}
-        bestScore={highScore}
+        bestScore={prevBest}
         isGameOver={isGameOver}
       />
+      <button onClick={earnPoints}>Points</button>
+      <button onClick={()=> console.log('score:', score, 'isgameover', isGameOver, 'high', prevBest)}>chec </button>
     </div>
   );
 }
