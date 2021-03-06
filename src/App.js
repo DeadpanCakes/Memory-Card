@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import GameBoard from "./Components/GameBoard";
 import cardPool from "./cardPool";
+import emitter from './emitter';
 
 function App() {
+  console.log(emitter)
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
   const [turn, setTurn] = useState(1);
   const [cardPoolState, setCardPoolState] = useState(cardPool);
+  const [lvl, setLvl] = useState(1);
 
   const initDeck = () => {
     setCardPoolState(
@@ -33,10 +36,11 @@ function App() {
   };
 
   const initScore = async () => setScore(0);
-  const increaseScore = () => setScore(score + 1);
-  const endGame = () => {
-    setGameOver(true);
-  };
+  const increaseScore = () => setScore(score+lvl)
+  const endGame = () => setGameOver(true);
+
+  const checkForHighScore = () => score>=highScore? setHighScore(score): null
+
   const incrementTurn = () => setTurn(turn + 1);
   const initTurn = () => setTurn(1);
   const startGame = () => {
@@ -53,18 +57,16 @@ function App() {
     increaseScore();
     incrementTurn();
   }
+  
+  const initLvl = () => setLvl(1)
+  const lvlUp = () => setLvl(lvl+1)
 
-  useEffect(() => {
-    if (score > highScore) {
-      setHighScore(score);
-    }
-  }, [score, highScore]);
 
   return (
     <div className="App">
-      <Header turn={turn} />
+      <Header lvl={lvl} turn={turn} />
       <GameBoard
-        deck={cardPool}
+        cardPool={cardPool}
         toggleCardTap={toggleCardTap}
         endTurn={endTurn}
         endGame={endGame}
