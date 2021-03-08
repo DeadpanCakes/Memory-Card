@@ -14,10 +14,13 @@ const GameBoard = (props) => {
           .filter((card) => deck.includes(card))
           .every((card) => card.isTapped)
       ) {
-        cardPool.untapAllCards();
+        completeLvl();
       }
-    });
-  }, []);
+    })
+    gameLogic.on('levelCompleted', addCardToDeck);
+  });
+
+  const completeLvl = () => gameLogic.emit('levelCompleted')
 
   const constructDeck = () => {
     //Take cardPool.pool, and pull aside 10 cards for active play

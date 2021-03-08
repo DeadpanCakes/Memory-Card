@@ -3,6 +3,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import GameBoard from "./Components/GameBoard";
 import gameLogic from "./gameLogic";
+import cards from "./cardPool";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -14,23 +15,17 @@ function App() {
   const initScore = () => setScore(0);
   const increaseScore = () => setScore(score + lvl);
 
-  const endGame = () => gameLogic.emit('gameEnded');
+  const initTurn = () => setTurn(1);
+  const incrementTurn = () => setTurn(turn + 1);
 
-  const checkForHighScore = () =>{
+  const initLvl = () => setLvl(1);
+  const lvlUp = () => setLvl(lvl + 1);
+
+  const checkForHighScore = () => {
     if (score > prevBest) {
       setPrevBest(score)
     }
   }
-
-  const incrementTurn = () => setTurn(turn + 1);
-  const initTurn = () => setTurn(1);
-  const startGame = () => gameLogic.emit("gameStarted");
-
-  const endTurn = () => gameLogic.emit('turnEnded');
-
-
-  const initLvl = () => setLvl(1);
-  const lvlUp = () => setLvl(lvl + 1);
 
   useEffect(() => {
     gameLogic.on("gameStarted", () => {
@@ -52,6 +47,11 @@ function App() {
       incrementTurn();
     });
 
+    gameLogic.on('levelCompleted', () => {
+      lvlUp();
+      cards.untapAllCards();
+    })
+
     gameLogic.on('gameEnded', () => {
       setGameOver(true);
       initLvl();
@@ -59,10 +59,10 @@ function App() {
     })
   });
 
-  const earnPoints = () => {
-    console.log('earned');
-    gameLogic.emit("pointsEarned");
-  }
+  const startGame = () => gameLogic.emit("gameStarted");
+  const earnPoints = () => gameLogic.emit("pointsEarned");
+  const endTurn = () => gameLogic.emit('turnEnded');
+  const endGame = () => gameLogic.emit('gameEnded');
 
   return (
     <div className="App">
@@ -75,8 +75,6 @@ function App() {
         isGameOver={isGameOver}
         lvl={lvl}
         lvlUp={lvlUp}
-        earnPoints={earnPoints}
-        incrementTurn={incrementTurn}
       />
       <Footer
         currentScore={score}
