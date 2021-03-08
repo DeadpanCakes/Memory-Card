@@ -25,32 +25,49 @@ import cloakAndDaggerImg from "./img/CloakAndDagger.png";
 import coolheadedImg from "./img/Coolheaded.png";
 import consecrateImg from "./img/Consecrate.png";
 
-const cardPool = [
-  cardObjFactory(0, "Bash", bashImg),
-  cardObjFactory(1, "Neutralize", neutralizeImg),
-  cardObjFactory(2, "Zap", zapImg),
-  cardObjFactory(3, "After Image", afterImageImg),
-  cardObjFactory(4, "Eruption", eruptionImg),
-  cardObjFactory(5, "Vigilance", vigilanceImg),
-  cardObjFactory(6, "Bludgeon", bludgeonImg),
-  cardObjFactory(7, "Vault", vaultImg),
-  cardObjFactory(8, "Biased Cognition", biasedCognitionImg),
-  cardObjFactory(9, "Twin Strike", twinStrikeImg),
-  cardObjFactory(10, "Cut Through Fate", cutThroughFateImg),
-  cardObjFactory(11, "Dagger Spray", daggerSprayImg),
-  cardObjFactory(12, "Claw", clawImg),
-  cardObjFactory(13, "Feel No Pain", feelNoPainImg),
-  cardObjFactory(14, "Noxious Fumes", noxiousFumesImg),
-  cardObjFactory(15, "Tempest", tempestImg),
-  cardObjFactory(16, "Sanctity", sanctityImg),
-  cardObjFactory(17, "Reaper", reaperImg),
-  cardObjFactory(18, "Envenom", envenomImg),
-  cardObjFactory(19, "Seek", seekImg),
-  cardObjFactory(20, "Ragnarok", ragnarokImg),
-  cardObjFactory(21, "Shrug It Off", shrugItOffImg),
-  cardObjFactory(22, "Cloak And Dagger", cloakAndDaggerImg),
-  cardObjFactory(23, "Coolheaded", coolheadedImg),
-  cardObjFactory(24, "Consecrate", consecrateImg),
-];
+const cards = (() => {
+  const pool = [
+    cardObjFactory(0, "Bash", bashImg),
+    cardObjFactory(1, "Neutralize", neutralizeImg),
+    cardObjFactory(2, "Zap", zapImg),
+    cardObjFactory(3, "After Image", afterImageImg),
+    cardObjFactory(4, "Eruption", eruptionImg),
+    cardObjFactory(5, "Vigilance", vigilanceImg),
+    cardObjFactory(6, "Bludgeon", bludgeonImg),
+    cardObjFactory(7, "Vault", vaultImg),
+    cardObjFactory(8, "Biased Cognition", biasedCognitionImg),
+    cardObjFactory(9, "Twin Strike", twinStrikeImg),
+    cardObjFactory(10, "Cut Through Fate", cutThroughFateImg),
+    cardObjFactory(11, "Dagger Spray", daggerSprayImg),
+    cardObjFactory(12, "Claw", clawImg),
+    cardObjFactory(13, "Feel No Pain", feelNoPainImg),
+    cardObjFactory(14, "Noxious Fumes", noxiousFumesImg),
+    cardObjFactory(15, "Tempest", tempestImg),
+    cardObjFactory(16, "Sanctity", sanctityImg),
+    cardObjFactory(17, "Reaper", reaperImg),
+    cardObjFactory(18, "Envenom", envenomImg),
+    cardObjFactory(19, "Seek", seekImg),
+    cardObjFactory(20, "Ragnarok", ragnarokImg),
+    cardObjFactory(21, "Shrug It Off", shrugItOffImg),
+    cardObjFactory(22, "Cloak And Dagger", cloakAndDaggerImg),
+    cardObjFactory(23, "Coolheaded", coolheadedImg),
+    cardObjFactory(24, "Consecrate", consecrateImg),
+  ]
 
-export default cardPool;
+  const untapAllCards = () => {
+    pool.forEach((card) => {
+      if (card.isTapped) {
+        card.toggleTapped();
+      }
+    })
+  }
+  return {
+    pool,
+    get untappedPool() {
+      return pool.filter((card) => !card.isTapped)
+    },
+    untapAllCards,
+  }
+})();
+
+export default cards;

@@ -2,6 +2,7 @@ const cardObjFactory = (key, name, imgSrc) => {
   let tapped = false;
   const toggleTapped = () => {
     tapped = !tapped
+    console.log(tapped)
   };
 
   return {

@@ -2,23 +2,24 @@ const Card = (props) => {
   const { key, name, imgSrc } = props.card;
   const { card } = props;
 
-  const handleClick = () => {
+  const handleClick = (card) => {
     if (card.isTapped) {
       props.endGame();
     } else {
-      props.endTurn();
       card.toggleTapped();
+      props.endTurn();
     }
   };
 
   return (
-      <img
-        className='card'
-        onClick={handleClick}
-        key={key}
-        alt={`A ${name} card from Slay the Spire`}
-        src={imgSrc}
-      ></img>
+    <img
+      style={{ border: card.isTapped ? "blue solid 3px" : null }}
+      className="card"
+      onClick={() => handleClick(card)}
+      key={key}
+      alt={`A ${name} card from Slay the Spire`}
+      src={imgSrc}
+    ></img>
   );
 };
 

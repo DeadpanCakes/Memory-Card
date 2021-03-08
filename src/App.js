@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import GameBoard from "./Components/GameBoard";
-import cardPool from "./cardPool";
 import gameLogic from "./gameLogic";
 
 function App() {
@@ -10,38 +9,16 @@ function App() {
   const [prevBest, setPrevBest] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
   const [turn, setTurn] = useState(1);
-  const [cardPoolState, setCardPoolState] = useState(cardPool);
   const [lvl, setLvl] = useState(1);
-
-  const initDeck = () => {
-    setCardPoolState(
-      cardPool.map((card) => {
-        //Checks if a card is tapped, and untaps them if they are, otherwise returns them, unchanged
-        if (card.isTapped) {
-          card.toggleTapped();
-          return card;
-        }
-        return card;
-      })
-    );
-  };
-
-  const toggleCardTap = (targetKey) => {
-    setCardPoolState(
-      cardPoolState.map((card) => {
-        return card.key === targetKey ? { ...card, isTapped: true } : card;
-      })
-    );
-  };
 
   const initScore = () => setScore(0);
   const increaseScore = () => setScore(score + lvl);
+
   const endGame = () => gameLogic.emit('gameEnded');
 
   const checkForHighScore = () =>{
     if (score > prevBest) {
       setPrevBest(score)
-      console.log(prevBest)
     }
   }
 
@@ -49,13 +26,8 @@ function App() {
   const initTurn = () => setTurn(1);
   const startGame = () => gameLogic.emit("gameStarted");
 
-  const endTurn = () => {
-    if (cardPoolState.every((card) => card.isTapped)) {
-      initDeck();
-    }
-    earnPoints();
-    incrementTurn();
-  };
+  const endTurn = () => gameLogic.emit('turnEnded');
+
 
   const initLvl = () => setLvl(1);
   const lvlUp = () => setLvl(lvl + 1);
@@ -64,7 +36,6 @@ function App() {
     gameLogic.on("gameStarted", () => {
       initTurn();
       initScore();
-      initDeck();
       setGameOver(false);
     });
 
@@ -73,31 +44,39 @@ function App() {
     });
 
     gameLogic.on("pointsEarned", () => {
-      increaseScore();
+      increaseScore(score);
+    });
+    
+    gameLogic.on('turnEnded',() => {
+      earnPoints();
+      incrementTurn();
     });
 
     gameLogic.on('gameEnded', () => {
       setGameOver(true);
+      initLvl();
       checkForHighScore();
     })
   });
 
-  const earnPoints = () => gameLogic.emit("pointsEarned");
+  const earnPoints = () => {
+    console.log('earned');
+    gameLogic.emit("pointsEarned");
+  }
 
   return (
     <div className="App">
       <Header lvl={lvl} turn={turn} />
       <GameBoard
-        cardPool={cardPool}
-        toggleCardTap={toggleCardTap}
         endTurn={endTurn}
         endGame={endGame}
         startGame={startGame}
         turn={turn}
-        initDeck={initDeck}
         isGameOver={isGameOver}
         lvl={lvl}
         lvlUp={lvlUp}
+        earnPoints={earnPoints}
+        incrementTurn={incrementTurn}
       />
       <Footer
         currentScore={score}
@@ -105,7 +84,6 @@ function App() {
         isGameOver={isGameOver}
       />
       <button onClick={earnPoints}>Points</button>
-      <button onClick={()=> console.log('score:', score, 'isgameover', isGameOver, 'high', prevBest)}>chec </button>
     </div>
   );
 }
