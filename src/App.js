@@ -3,7 +3,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import GameBoard from "./Components/GameBoard";
 import gameLogic from "./gameLogic";
-import cards from "./cardPool";
+import cards from "./cards";
 
 function App() {
   const [score, setScore] = useState(0);
