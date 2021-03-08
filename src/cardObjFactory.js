@@ -1,4 +1,4 @@
-const cardObjFactory = (key, name, imgSrc) => {
+const cardObjFactory = (key, name, imgSrc, dmg, def, energy) => {
   let tapped = false;
   const toggleTapped = () => {
     tapped = !tapped
@@ -8,6 +8,9 @@ const cardObjFactory = (key, name, imgSrc) => {
     key,
     name,
     imgSrc,
+    dmg,
+    def,
+    energy,
     toggleTapped,
     get isTapped() {
         return tapped

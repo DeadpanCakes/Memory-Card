@@ -10,9 +10,7 @@ const GameBoard = (props) => {
   useEffect(() => {
     gameLogic.on("turnEnded", () => {
       if (
-        cards.pool
-          .filter((card) => deck.includes(card))
-          .every((card) => card.isTapped)
+        !cards.untappedPool.some(card => deck.includes(card))
       ) {
         completeLvl();
       }
