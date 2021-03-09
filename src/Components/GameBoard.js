@@ -5,8 +5,7 @@ import PCSide from "./PCSide";
 import background from "../img/stsBackground.jpg";
 import gameLogic from "../gameLogic";
 import cards from "../cards";
-import deckIcon from "../img/cardIcon.png";
-
+import DeckIndicator from './DeckIndicator';
 
 const GameBoard = (props) => {
   useEffect(() => {
@@ -16,7 +15,9 @@ const GameBoard = (props) => {
       }
     });
     gameLogic.on("levelCompleted", () => {
-      cards.pool.length === deck.length ? console.log('You Win!') : addCardToDeck()
+      cards.pool.length === deck.length
+        ? console.log("You Win!")
+        : addCardToDeck();
     });
   });
 
@@ -59,14 +60,7 @@ const GameBoard = (props) => {
         endTurn={props.endTurn}
         endGame={props.endGame}
       />
-      <div id="deckContainer">
-        <img
-          id="deckIcon"
-          src={deckIcon}
-          alt={`Icon Indicating Your Deck has ${deck.length} Cards`}
-        ></img>
-        <p id="deckCount">{deck.length}</p>
-      </div>
+      <DeckIndicator deckSize={deck.length} />
     </div>
   );
 };

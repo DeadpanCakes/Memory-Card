@@ -79,7 +79,7 @@ header {
 	flex-grow: 2;
 }
 
-#deckContainer {
+#deckIndicator {
 	position: relative;
 	max-width: 40px;
 	max-height: 40px;
@@ -93,7 +93,7 @@ header {
 #deckCount {
 	position: absolute;
 	bottom: -8px;
-	right: 1px;
+	right: -3px;
 	color: white;
 	text-shadow: 1px 1px black;
 }
