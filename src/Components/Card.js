@@ -9,6 +9,7 @@ const Card = (props) => {
       card.toggleTapped();
       spendEnergy(energy);
       damageEnemy(dmg);
+      props.displayDmg(dmg)
       gainBlock(def)
       endTurn();
     }

@@ -45,26 +45,12 @@ const GameBoard = (props) => {
   };
 
   //These fn's reduce particular stats associated with the cards (energy, damage, and block) to caclulate the current deck's totals
-  // const energyPool = () => {
-  //   const total = deck.reduce((total, card) => ({
-  //     energy: total.energy + card.energy,
-  //   }));
-  //   return total.energy;
-  // };
-  // const enemyAttack = () => {
-  //   const total = deck.reduce((total, card) => ({
-  //     def: total.def + card.def,
-  //   }));
-  //   return total.def;
-  // };
   const energyPool = deck.reduce((total, card) => ({
     energy: total.energy + card.energy,
   })).energy;
-
   const enemyAttack = deck.reduce((total, card) => ({
     def: total.def + card.def,
   })).def;
-
   const enemyHealth = deck.reduce((total, card) => ({
     dmg: total.dmg + card.dmg,
   })).dmg;
@@ -73,6 +59,11 @@ const GameBoard = (props) => {
   const [currentBlock, setCurrentBlock] = useState(0);
   const [currentEnemyHealth, setCurrentEnemyHealth] = useState(enemyHealth);
   const [enemyIntent, setEnemyIntent] = useState(enemyAttack);
+  const [currentDmg, setCurrentDmg] = useState(0)
+
+  const displayDmg = (dmg) => {
+    setCurrentDmg(dmg)
+  }
 
   useEffect(() => {
     setCurrentEnergy(energyPool);
@@ -100,6 +91,7 @@ const GameBoard = (props) => {
             enemyAttack={enemyIntent}
             currentEnemyHealth={currentEnemyHealth}
             enemyHealth={enemyHealth}
+            currentDmg={currentDmg}
           />
         </div>
       )}
@@ -107,7 +99,7 @@ const GameBoard = (props) => {
         spendEnergy={spendEnergy}
         gainBlock={gainBlock}
         damageEnemy={damageEnemy}
-        turn={props.turn}
+        displayDmg={displayDmg}
         deck={deck}
         endTurn={props.endTurn}
         endGame={props.endGame}
