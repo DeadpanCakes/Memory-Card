@@ -1,13 +1,16 @@
 const Card = (props) => {
-  const { key, name, imgSrc } = props.card;
-  const { card } = props;
+  const { key, name, imgSrc, energy, dmg, def } = props.card;
+  const { card, spendEnergy, damageEnemy, gainBlock, endTurn, endGame } = props;
 
   const handleClick = (card) => {
     if (card.isTapped) {
-      props.endGame();
+      endGame();
     } else {
       card.toggleTapped();
-      props.endTurn();
+      spendEnergy(energy);
+      damageEnemy(dmg);
+      gainBlock(def)
+      endTurn();
     }
   };
 

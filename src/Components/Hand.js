@@ -3,7 +3,7 @@ import gameLogic from "../gameLogic";
 import Card from "./Card";
 
 const Hand = (props) => {
-  const { deck } = props;
+  const { deck, spendEnergy, damageEnemy, gainBlock, endTurn, endGame } = props;
 
   const drawHand = (hand) => {
     //Recursive Fn that repeatedly adds new cards to hand until it reaches appropriate size
@@ -42,9 +42,12 @@ const Hand = (props) => {
           <Card
             key={card.key}
             card={card}
-            endTurn={props.endTurn}
+            spendEnergy={spendEnergy}
+            damageEnemy={damageEnemy}
+            gainBlock={gainBlock}
+            endTurn={endTurn}
             isTapped={card.isTapped}
-            endGame={props.endGame}
+            endGame={endGame}
           />
         );
       })}

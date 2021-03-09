@@ -71,7 +71,7 @@ const GameBoard = (props) => {
 
   const gainBlock = (block) => setCurrentBlock(currentBlock + block)
   const damageEnemy = (dmg) => setCurrentEnemyHealth(currentEnemyHealth - dmg);
-  const useEnergy = (cost) => setCurrentEnergy(currentEnergy - cost);
+  const spendEnergy = (cost) => setCurrentEnergy(currentEnergy - cost);
 
   return (
     <div id="gameBoard" style={{ backgroundImage: `url(${background})` }}>
@@ -88,7 +88,7 @@ const GameBoard = (props) => {
         </div>
       )}
       <Hand
-        useEnergy={useEnergy}
+        spendEnergy={spendEnergy}
         gainBlock={gainBlock}
         damageEnemy={damageEnemy}
         turn={props.turn}
