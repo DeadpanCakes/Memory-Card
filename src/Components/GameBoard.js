@@ -15,7 +15,9 @@ const GameBoard = (props) => {
         completeLvl();
       }
     });
-    gameLogic.on("levelCompleted", addCardToDeck);
+    gameLogic.on("levelCompleted", () => {
+      cards.pool.length === deck.length ? console.log('You Win!') : addCardToDeck()
+    });
   });
 
   const completeLvl = () => gameLogic.emit("levelCompleted");
@@ -61,7 +63,7 @@ const GameBoard = (props) => {
         <img
           id="deckIcon"
           src={deckIcon}
-          alt="Icon Indicating Your Deck is N Cards"
+          alt={`Icon Indicating Your Deck has ${deck.length} Cards`}
         ></img>
         <p id="deckCount">{deck.length}</p>
       </div>
