@@ -9,19 +9,17 @@ import cards from "../cards";
 const GameBoard = (props) => {
   useEffect(() => {
     gameLogic.on("turnEnded", () => {
-      if (
-        !cards.untappedPool.some(card => deck.includes(card))
-      ) {
+      if (!cards.untappedPool.some((card) => deck.includes(card))) {
         completeLvl();
       }
-    })
-    gameLogic.on('levelCompleted', addCardToDeck);
+    });
+    gameLogic.on("levelCompleted", addCardToDeck);
   });
 
-  const completeLvl = () => gameLogic.emit('levelCompleted')
+  const completeLvl = () => gameLogic.emit("levelCompleted");
 
   const constructDeck = () => {
-    //Take cardPool.pool, and pull aside 10 cards for active play
+    //Take cardPool.pool, and pull aside 6 cards for active play
     const deck = [];
     for (let i = 0; deck.length < 6; i++) {
       const rng = Math.floor(Math.random() * cards.pool.length);
@@ -57,7 +55,6 @@ const GameBoard = (props) => {
         endTurn={props.endTurn}
         endGame={props.endGame}
       />
-      <button onClick={addCardToDeck}>Add</button>
     </div>
   );
 };

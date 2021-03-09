@@ -81,7 +81,6 @@ function App() {
         bestScore={prevBest}
         isGameOver={isGameOver}
       />
-      <button onClick={earnPoints}>Points</button>
     </div>
   );
 }
