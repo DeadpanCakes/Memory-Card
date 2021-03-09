@@ -124,6 +124,10 @@ header {
 	justify-content: space-around;
 }
 
+#enemyHealth {
+	color: white;
+}
+
 footer {
 	display: flex;
 	width: 100%;

@@ -5,7 +5,7 @@ import PCSide from "./PCSide";
 import background from "../img/stsBackground.jpg";
 import gameLogic from "../gameLogic";
 import cards from "../cards";
-import DeckIndicator from './DeckIndicator';
+import DeckIndicator from "./DeckIndicator";
 
 const GameBoard = (props) => {
   useEffect(() => {
@@ -44,17 +44,53 @@ const GameBoard = (props) => {
     setDeck(deck.concat(newCards[rng]));
   };
 
+  //These fn's reduce particular stats associated with the cards (energy, damage, and block) to caclulate the current deck's totals
+  const energyPool = () => {
+    const total = deck.reduce((total, card) => ({
+      energy: total.energy + card.energy,
+    }));
+    return total.energy;
+  };
+  const enemyAttack = () => {
+    const total = deck.reduce((total, card) => ({
+      def: total.def + card.def,
+    }));
+    return total.def;
+  };
+  const enemyHealth = () => {
+    const total = deck.reduce((total, card) => ({
+      dmg: total.dmg + card.dmg,
+    }));
+    return total.dmg;
+  };
+
+  const [currentEnergy, setCurrentEnergy] = useState(energyPool());
+  const [currentBlock, setCurrentBlock] = useState(0);
+  const [currentEnemyHealth, setCurrentEnemyHealth] = useState(enemyHealth());
+  const [enemyIntent] = useState(enemyAttack());
+
+  const gainBlock = (block) => setCurrentBlock(currentBlock + block)
+  const damageEnemy = (dmg) => setCurrentEnemyHealth(currentEnemyHealth - dmg);
+  const useEnergy = (cost) => setCurrentEnergy(currentEnergy - cost);
+
   return (
     <div id="gameBoard" style={{ backgroundImage: `url(${background})` }}>
       {props.isGameOver ? (
         <button onClick={props.startGame}>Start Game</button>
       ) : (
         <div id="field">
-          <PCSide />
-          <EnemySide />
+          <PCSide energyPool={energyPool()} currentEnergy={currentEnergy} currentBlock={currentBlock} />
+          <EnemySide
+            enemyAttack={enemyIntent}
+            currentEnemyHealth={currentEnemyHealth}
+            enemyHealth={enemyHealth()}
+          />
         </div>
       )}
       <Hand
+        useEnergy={useEnergy}
+        gainBlock={gainBlock}
+        damageEnemy={damageEnemy}
         turn={props.turn}
         deck={deck}
         endTurn={props.endTurn}
