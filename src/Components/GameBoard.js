@@ -5,6 +5,8 @@ import PCSide from "./PCSide";
 import background from "../img/stsBackground.jpg";
 import gameLogic from "../gameLogic";
 import cards from "../cards";
+import deckIcon from "../img/cardIcon.png";
+
 
 const GameBoard = (props) => {
   useEffect(() => {
@@ -55,6 +57,14 @@ const GameBoard = (props) => {
         endTurn={props.endTurn}
         endGame={props.endGame}
       />
+      <div id="deckContainer">
+        <img
+          id="deckIcon"
+          src={deckIcon}
+          alt="Icon Indicating Your Deck is N Cards"
+        ></img>
+        <p id="deckCount">{deck.length}</p>
+      </div>
     </div>
   );
 };
