@@ -79,6 +79,25 @@ header {
 	flex-grow: 2;
 }
 
+#deckContainer {
+	position: relative;
+	max-width: 40px;
+	max-height: 40px;
+}
+
+#deckIcon {
+	max-width: 100%;
+	position: relative;
+}
+
+#deckCount {
+	position: absolute;
+	bottom: -8px;
+	right: 1px;
+	color: white;
+	text-shadow: 1px 1px black;
+}
+
 #gameBoard {
 	display:  flex;
 	flex-direction: column;
