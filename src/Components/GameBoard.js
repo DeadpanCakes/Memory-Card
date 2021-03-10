@@ -59,7 +59,9 @@ const GameBoard = (props) => {
   const [currentBlock, setCurrentBlock] = useState(0);
   const [currentEnemyHealth, setCurrentEnemyHealth] = useState(enemyHealth);
   const [enemyIntent, setEnemyIntent] = useState(enemyAttack);
-  const [currentDmg, setCurrentDmg] = useState(0)
+  const [lastEnergyCost, setLastEnergyCost] = useState(0)
+  const [lastDmg, setLastDmg] = useState(0)
+  const [lastDef, setLastDef] = useState(0)
 
   useEffect(() => {
     setCurrentEnergy(energyPool);
@@ -81,21 +83,25 @@ const GameBoard = (props) => {
           <PCSide
             energyPool={energyPool}
             currentEnergy={currentEnergy}
+            lastEnergyCost={lastEnergyCost}
             currentBlock={currentBlock}
+            lastDef={lastDef}
           />
           <EnemySide
             enemyAttack={enemyIntent}
             currentEnemyHealth={currentEnemyHealth}
             enemyHealth={enemyHealth}
-            currentDmg={currentDmg}
+            currentDmg={lastDmg}
           />
         </div>
       )}
       <Hand
         spendEnergy={spendEnergy}
+        setLastEnergyCost={setLastEnergyCost}
         gainBlock={gainBlock}
+        setLastDef={setLastDef}
         damageEnemy={damageEnemy}
-        setCurrentDmg={setCurrentDmg}
+        setLastDmg={setLastDmg}
         deck={deck}
         endTurn={props.endTurn}
         endGame={props.endGame}

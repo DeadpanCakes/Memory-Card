@@ -43,9 +43,11 @@ const Hand = (props) => {
             key={card.key}
             card={card}
             spendEnergy={spendEnergy}
+            setLastEnergyCost={props.setLastEnergyCost}
             damageEnemy={damageEnemy}
+            setLastDmg={props.setLastDmg}
             gainBlock={gainBlock}
-            setCurrentDmg={props.setCurrentDmg}
+            setLastDef={props.setLastDef}
             endTurn={endTurn}
             isTapped={card.isTapped}
             endGame={endGame}

@@ -9,8 +9,9 @@ const EnemySide = (props) => {
         <p id="enemyHealth">
           {props.currentEnemyHealth}/{props.enemyHealth}
         </p>
-        <p style={{color: 'red'}}>-{props.currentDmg}</p>
+        <p class='inactiveCard' style={{color: 'red'}}>-{props.currentDmg}</p>
       </div>
+      <button onClick={()=> document.querySelector('.inactiveCard').classList.add('cardEffect')}></button>
     </div>
   );
 };

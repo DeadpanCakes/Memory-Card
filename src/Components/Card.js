@@ -9,10 +9,16 @@ const Card = (props) => {
       card.toggleTapped();
       spendEnergy(energy);
       damageEnemy(dmg);
-      gainBlock(def)
+      gainBlock(def);
       endTurn();
-      if (dmg>0) {
-        props.setCurrentDamage(dmg)
+      if (energy > 0) {
+        props.setLastEnergyCost(energy);
+      }
+      if (dmg > 0) {
+        props.setLastDmg(dmg);
+      }
+      if (def > 0) {
+        props.setLastDef(def);
       }
     }
   };
