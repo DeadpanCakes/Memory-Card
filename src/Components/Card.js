@@ -9,9 +9,11 @@ const Card = (props) => {
       card.toggleTapped();
       spendEnergy(energy);
       damageEnemy(dmg);
-      props.displayDmg(dmg)
       gainBlock(def)
       endTurn();
+      if (dmg>0) {
+        props.setCurrentDamage(dmg)
+      }
     }
   };
 

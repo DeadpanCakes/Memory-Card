@@ -61,10 +61,6 @@ const GameBoard = (props) => {
   const [enemyIntent, setEnemyIntent] = useState(enemyAttack);
   const [currentDmg, setCurrentDmg] = useState(0)
 
-  const displayDmg = (dmg) => {
-    setCurrentDmg(dmg)
-  }
-
   useEffect(() => {
     setCurrentEnergy(energyPool);
     setCurrentEnemyHealth(enemyHealth);
@@ -99,7 +95,7 @@ const GameBoard = (props) => {
         spendEnergy={spendEnergy}
         gainBlock={gainBlock}
         damageEnemy={damageEnemy}
-        displayDmg={displayDmg}
+        setCurrentDmg={setCurrentDmg}
         deck={deck}
         endTurn={props.endTurn}
         endGame={props.endGame}

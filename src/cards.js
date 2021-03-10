@@ -51,7 +51,7 @@ const cards = (() => {
     cardObjFactory(21, "Shrug It Off", shrugItOffImg, 0,8,1),
     cardObjFactory(22, "Cloak And Dagger", cloakAndDaggerImg, 0,6,1),
     cardObjFactory(23, "Coolheaded", coolheadedImg, 0,0,0),
-    cardObjFactory(24, "Consecrate", consecrateImg, 0,5,0),
+    cardObjFactory(24, "Consecrate", consecrateImg, 5,0,0),
   ]
 
   const untapAllCards = () => {

@@ -9,7 +9,7 @@ const EnemySide = (props) => {
         <p id="enemyHealth">
           {props.currentEnemyHealth}/{props.enemyHealth}
         </p>
-        <p style={{color: 'white'}}>{props.currentDmg}</p>
+        <p style={{color: 'red'}}>-{props.currentDmg}</p>
       </div>
     </div>
   );
