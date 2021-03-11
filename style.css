@@ -1,0 +1,232 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+h1, h2 {
+	font-family: 'Rasa', serif;
+	color: #F5FBEF;
+	font-size: 1.5em;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+}
+
+#root {
+	height: 100%;
+	width: 100%;
+}
+
+.App {
+	min-height: 100%;
+	min-width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	background-color: #3A6580;
+	flex-grow: 2;
+}
+
+header>*{
+	padding-left: 10px;
+}
+
+#lvl {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	color: white;
+	opacity: 0;
+	font-size: 2em;
+	font-family: 'Ubuntu Mono', monospace;
+}
+
+.lvlAnimating {
+	animation: lvlUp 2s ease-in-out;
+}
+
+@keyframes lvlUp {
+	40%,50% {
+		transform: translate(0, -200px);
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+#deckIndicator {
+	position: relative;
+	max-width: 40px;
+	max-height: 40px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	align-self: start;
+}
+
+#deckIcon {
+	max-width: 100%;
+	position: relative;
+}
+
+#deckCount {
+	position: absolute;
+	bottom: 12px;
+	right: -10px;
+	color: white;
+	text-shadow: 1px 1px black;
+}
+
+#gameBoard {
+	display:  flex;
+	flex-direction: column;
+	width: 100%;
+	flex-grow: 20;
+	justify-content: center;
+}
+
+#hand {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	padding-bottom: 50px;
+}
+
+.cards {
+	max-height: 300px;
+}
+
+.drawnCards {
+	animation: drawing 1s ease-in;
+}
+
+#field {
+	flex-grow: 1;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-around;
+}
+
+#pcSide {
+	display: flex;
+	flex-direction: column;
+}
+
+#enemySide {
+	display: flex;
+	flex-direction: column;
+}
+
+.indicators {
+	font-family: 'Ubuntu Mono', monospace;
+	align-self: center;
+	font-size: 1.5em;
+}
+
+#blockIndicator {
+	padding-left: 40px;
+	color: #1BE7FF;
+}
+
+#energyIndicator {
+	padding-left: 40px;
+	color: #227013;
+}
+
+#intentIndicator {
+	color: #FF9F1C;
+}
+
+#healthIndicator {
+	color: #a82025;
+}
+
+footer {
+	display: flex;
+	width: 100%;
+	min-height: 50px;
+	max-height: 100px;
+	background-color: #B76D68;
+	align-items: flex-end;
+	justify-content: center;
+	flex-grow: 3;
+}
+
+#scoreBoard {
+	display: flex;
+	margin-right: auto;
+	align-items: center;
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
+
+.inactiveCards {
+	opacity: 0;
+	color: lightcoral
+}
+
+.cardEffects {
+	animation: indicator 2s;
+}
