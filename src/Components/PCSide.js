@@ -2,21 +2,15 @@ import React from "react";
 import ironclad from "../img/Ironclad.png";
 
 const PCSide = (props) => {
-  const DefIndicator = () => <p style={{ color: "cyan" }}>+{props.lastDef}</p>;
-
   return (
     <div id="pcSide">
-      <div>
-        <p style={{ color: "cyan" }}>{props.currentBlock}</p>
-        <DefIndicator />
-      </div>
+      <p className="indicators" id="blockIndicator">
+        {props.currentBlock}
+      </p>
       <img src={ironclad} alt="The Ironclad From Slay The Spire"></img>
-      <div>
-        <p style={{ color: "white" }}>
+        <p className='indicators' id='energyIndicator'>
           {props.currentEnergy}/{props.energyPool}
         </p>
-        <p style={{ color: "green" }}>{props.lastEnergyCost}</p>
-      </div>
     </div>
   );
 };

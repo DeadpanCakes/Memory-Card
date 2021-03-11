@@ -1,8 +1,10 @@
+import React, { useEffect, useState } from "react";
+
 const Card = (props) => {
   const { key, name, imgSrc, energy, dmg, def } = props.card;
   const { card, spendEnergy, damageEnemy, gainBlock, endTurn, endGame } = props;
 
-  const handleClick = (card) => {
+  const handleClick = async (card) => {
     if (card.isTapped) {
       endGame();
     } else {
@@ -10,7 +12,6 @@ const Card = (props) => {
       spendEnergy(energy);
       damageEnemy(dmg);
       gainBlock(def);
-      endTurn();
       if (energy > 0) {
         props.setLastEnergyCost(energy);
       }
@@ -20,18 +21,21 @@ const Card = (props) => {
       if (def > 0) {
         props.setLastDef(def);
       }
+      endTurn();
     }
   };
+  // style={{ border: card.isTapped ? "blue solid 3px" : null }}
+
 
   return (
-    <img
-      style={{ border: card.isTapped ? "blue solid 3px" : null }}
-      className="card"
-      onClick={() => handleClick(card)}
-      key={key}
-      alt={`A ${name} card from Slay the Spire`}
-      src={imgSrc}
-    ></img>
+      <img
+        className="cards"
+        onClick={!props.isAnimating ? () => handleClick(card) : null}
+        key={key}
+        alt={`${name} Cost: ${energy} Damage: ${dmg} Block: ${def}`}
+        src={imgSrc}
+        id={name}
+      ></img>
   );
 };
 

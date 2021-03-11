@@ -113,8 +113,12 @@ header {
 	padding-bottom: 50px;
 }
 
-.card {
+.cards {
 	max-height: 300px;
+}
+
+.drawnCards {
+	animation: drawing 1s ease-in;
 }
 
 #field {
@@ -122,6 +126,39 @@ header {
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-around;
+}
+
+#pcSide {
+	display: flex;
+	flex-direction: column;
+}
+
+#enemySide {
+	display: flex;
+	flex-direction: column;
+}
+
+.indicators {
+	align-self: center;
+	font-size: 1.5em;
+}
+
+#blockIndicator {
+	padding-left: 40px;
+	color: cyan;
+}
+
+#energyIndicator {
+	padding-left: 40px;
+	color: green
+}
+
+#intentIndicator {
+	color: orange
+}
+
+#healthIndicator {
+	color: red
 }
 
 #enemyHealth {
@@ -145,19 +182,11 @@ footer {
 	align-items: center;
 }
 
-.inactiveCard {
+.inactiveCards {
 	opacity: 0;
+	color: lightcoral
 }
 
-.cardEffect {
-	animation: indicator 2s ease-in;
-}
-
-@keyframes indicator {
-	30%{
-		opacity: 100%;
-	}
-	100% {
-		opacity: 0%;
-	}
+.cardEffects {
+	animation: indicator 2s;
 }

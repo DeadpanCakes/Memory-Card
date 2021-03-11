@@ -11,6 +11,7 @@ function App() {
   const [isGameOver, setGameOver] = useState(false);
   const [turn, setTurn] = useState(1);
   const [lvl, setLvl] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false)
 
   const initScore = () => setScore(0);
   const increaseScore = () => setScore(score + lvl);
