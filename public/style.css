@@ -47,8 +47,14 @@ table {
 	border-spacing: 0;
 }
 
-* {
+h1, h2 {
 	font-family: 'Rasa', serif;
+	color: #F5FBEF;
+	font-size: 1.5em;
+}
+
+h1 {
+	font-size: 2em;
 }
 
 html {
@@ -77,9 +83,14 @@ body {
 
 header {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
-	background-color: blue;
+	background-color: #3A6580;
 	flex-grow: 2;
+}
+
+header>*{
+	padding-left: 10px;
 }
 
 #lvl {
@@ -176,24 +187,20 @@ header {
 
 #blockIndicator {
 	padding-left: 40px;
-	color: cyan;
+	color: #1BE7FF;
 }
 
 #energyIndicator {
 	padding-left: 40px;
-	color: green
+	color: #227013;
 }
 
 #intentIndicator {
-	color: orange
+	color: #FF9F1C;
 }
 
 #healthIndicator {
-	color: red
-}
-
-#enemyHealth {
-	color: white;
+	color: #a82025;
 }
 
 footer {
@@ -201,7 +208,7 @@ footer {
 	width: 100%;
 	min-height: 50px;
 	max-height: 100px;
-	background-color: pink;
+	background-color: #B76D68;
 	align-items: flex-end;
 	justify-content: center;
 	flex-grow: 3;
@@ -211,6 +218,8 @@ footer {
 	display: flex;
 	margin-right: auto;
 	align-items: center;
+	padding-left: 20px;
+	padding-bottom: 20px;
 }
 
 .inactiveCards {

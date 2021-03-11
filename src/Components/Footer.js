@@ -1,7 +1,7 @@
 const Footer = (props) => (
   <footer>
     <div id="scoreBoard">
-      <h1 id='scoreTitle'>Score</h1>
+      <h1 style={{paddingRight: '10px'}} id='scoreTitle'>Score || </h1>
       <div id='scoreContainer'>
         <h2>Current: {props.currentScore}</h2>
         <h2>High Score:{props.bestScore}</h2>
