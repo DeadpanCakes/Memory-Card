@@ -84,7 +84,6 @@ function App() {
         bestScore={prevBest}
         isGameOver={isGameOver}
       />
-      <button onClick={() => setLvl(lvl+1)}>lvl</button>
     </div>
   );
 }

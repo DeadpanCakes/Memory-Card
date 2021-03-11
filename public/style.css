@@ -47,6 +47,9 @@ table {
 	border-spacing: 0;
 }
 
+* {
+	font-family: 'Rasa', serif;
+}
 
 html {
 	height: 100%;
@@ -86,6 +89,7 @@ header {
 	color: white;
 	opacity: 0;
 	font-size: 2em;
+	font-family: 'Ubuntu Mono', monospace;
 }
 
 .lvlAnimating {
@@ -106,6 +110,9 @@ header {
 	position: relative;
 	max-width: 40px;
 	max-height: 40px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	align-self: start;
 }
 
 #deckIcon {
@@ -115,8 +122,8 @@ header {
 
 #deckCount {
 	position: absolute;
-	bottom: -8px;
-	right: -3px;
+	bottom: 12px;
+	right: -10px;
 	color: white;
 	text-shadow: 1px 1px black;
 }
@@ -162,6 +169,7 @@ header {
 }
 
 .indicators {
+	font-family: 'Ubuntu Mono', monospace;
 	align-self: center;
 	font-size: 1.5em;
 }

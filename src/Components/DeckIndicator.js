@@ -3,7 +3,7 @@ import deckIcon from "../img/cardIcon.png";
 const DeckIndicator = (props) => {
   const { deckSize } = props;
   return (
-    <div id="deckIndicator">
+    <div id="deckIndicator" className='indicators'>
       <img
         id="deckIcon"
         src={deckIcon}
