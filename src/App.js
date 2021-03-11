@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Lvl from './Components/Lvl';
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import GameBoard from "./Components/GameBoard";
@@ -60,6 +61,7 @@ function App() {
     })
   });
 
+
   const startGame = () => gameLogic.emit("gameStarted");
   const earnPoints = () => gameLogic.emit("pointsEarned");
   const endTurn = () => gameLogic.emit('turnEnded');
@@ -67,6 +69,7 @@ function App() {
 
   return (
     <div className="App">
+      <Lvl lvl={lvl}/>
       <Header lvl={lvl} turn={turn} />
       <GameBoard
         endTurn={endTurn}
@@ -82,6 +85,7 @@ function App() {
         bestScore={prevBest}
         isGameOver={isGameOver}
       />
+      <button onClick={() => setLvl(lvl+1)}>lvl</button>
     </div>
   );
 }

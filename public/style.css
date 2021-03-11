@@ -79,6 +79,29 @@ header {
 	flex-grow: 2;
 }
 
+#lvl {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	color: white;
+	opacity: 0;
+	font-size: 2em;
+}
+
+.lvlAnimating {
+	animation: lvlUp 2s ease-in-out;
+}
+
+@keyframes lvlUp {
+	40%,50% {
+		transform: translate(0, -200px);
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
 #deckIndicator {
 	position: relative;
 	max-width: 40px;

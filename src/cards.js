@@ -29,7 +29,7 @@ const cards = (() => {
   const pool = [
     cardObjFactory(0, "Bash", bashImg, 8, 0, 2),
     cardObjFactory(1, "Neutralize", neutralizeImg, 3, 0, 0),
-    cardObjFactory(2, "Zap", zapImg, 0, 0, 0),
+    cardObjFactory(2, "Zap", zapImg, 0, 0, 1),
     cardObjFactory(3, "After Image", afterImageImg, 0, 0, 1),
     cardObjFactory(4, "Eruption", eruptionImg, 9,0,2),
     cardObjFactory(5, "Vigilance", vigilanceImg, 0, 8, 2),
