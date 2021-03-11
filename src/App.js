@@ -12,10 +12,9 @@ function App() {
   const [isGameOver, setGameOver] = useState(false);
   const [turn, setTurn] = useState(1);
   const [lvl, setLvl] = useState(1);
-  const [isAnimating, setIsAnimating] = useState(false)
 
   const initScore = () => setScore(0);
-  const increaseScore = () => setScore(score + lvl);
+  const increaseScore = () => setScore(score + (lvl*100));
 
   const initTurn = () => setTurn(1);
   const incrementTurn = () => setTurn(turn + 1);
